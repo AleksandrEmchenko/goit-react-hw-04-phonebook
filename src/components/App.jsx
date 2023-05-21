@@ -14,7 +14,6 @@ function App() {
   }, [contacts]);
 
   const handelCheckUniqContact = (name) => {
-    console.log(name);
     const isContact = contacts.find((contact) => contact.name === name);
     return isContact && alert(`${name} is already in contact`);
   };
