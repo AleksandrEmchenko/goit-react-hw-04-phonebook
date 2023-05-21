@@ -3,60 +3,56 @@ import ContactForm from "./ContactForm";
 import ContactsList from "./Contacts";
 import Filter from "./Filter";
 
-export default function App() {
+function App() {
+  const [contacts, setContacts] = useState(
+    JSON.parse(localStorage.getItem("contacts")) ?? []
+  );
+  const [filter, setFilter] = useState("");
 
-  const [contacts, setContacts] = useState(JSON.parse(localStorage.getItem('contacts')) ?? []);
-  const [filter, setFilter] = useState('');
-
-
-  
-useEffect(() => {
-  localStorage.setItem('contacts', JSON.stringify(contacts))
-},[contacts])
-  
-  const addContact = (contact) => {
-   setContacts([...contacts, contact])
-  
-  };
-
-  const handleFilter = (filter) => {
-    setFilter(filter);
-  };
+  useEffect(() => {
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+  }, [contacts]);
 
   const handelCheckUniqContact = (name) => {
+    console.log(name);
     const isContact = contacts.find((contact) => contact.name === name);
-    return (isContact && alert(`${name} is already in contact`));
+    return isContact && alert(`${name} is already in contact`);
   };
 
-  const handleRemove = (id) => {
-    setContacts(contacts.filter((contact) => contact.id !== id),
-    );
+  const addContact = (contact) => {
+    setContacts([...contacts, contact]);
   };
- 
+
+  const handleFilter = (event) => {
+    setFilter(event.currentTarget.value);
+  };
+
   const getVisibleContacts = () => {
-    contacts.filter((contact) =>
+    return contacts.filter((contact) =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
 
-    // const visibleContacts = getVisibleContacts();
+  const handleRemove = (id) => {
+    setContacts(contacts.filter((contact) => contact.id !== id));
+  };
 
+  const visibleContacts = getVisibleContacts();
+  return (
+    <div>
+      <h1>Phonebook</h1>
 
-    return (
-      <div>
-        <h1>Phonebook</h1>
+      <ContactForm
+        onAddContact={addContact}
+        onCheckUniq={handelCheckUniqContact}
+      />
 
-        <ContactForm
-          onAddContact={addContact}
-          onCheckUniq={handelCheckUniqContact}
-        />
+      <h2>Contacts</h2>
 
-        <h2>Contacts</h2>
-
-        <Filter value={filter} onChange={handleFilter} />
-        <ContactsList contacts={getVisibleContacts} onRemove={handleRemove} />
-      </div>
-    );
-
+      <Filter value={filter} onChange={handleFilter} />
+      <ContactsList contacts={visibleContacts} onRemove={handleRemove} />
+    </div>
+  );
 }
 
+export default App;

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {FilterFild} from "./Filter.styled"
+import { FilterFild } from "./Filter.styled";
 
 function Filter({ filter, onChange }) {
   return (
@@ -11,7 +11,7 @@ function Filter({ filter, onChange }) {
         type="text"
         name="filter"
         value={filter}
-        onChange={({ target }) => onChange(target.value)}
+        onChange={onChange}
       />
     </label>
   );
