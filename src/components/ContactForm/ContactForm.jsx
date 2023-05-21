@@ -2,7 +2,7 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 import PropTypes from "prop-types";
 import {
-  Form,
+  Container,
   ContactFild,
   ContactLabel,
   ButtonSub,
@@ -36,7 +36,7 @@ function ContactForm({ onAddContact, onCheckUniq }) {
   return (
     <div>
       <form onSubmit={handleSubmitForm}>
-        <Form>
+        <Container>
           <ContactLabel>
             Name
             <ContactFild
@@ -63,7 +63,7 @@ function ContactForm({ onAddContact, onCheckUniq }) {
               required
             />
           </ContactLabel>
-        </Form>
+        </Container>
 
         <ButtonSub type="submit">Add contact</ButtonSub>
       </form>

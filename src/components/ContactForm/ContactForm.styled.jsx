@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Form = styled.form`
+export const Container = styled.div`
 display: flex;
 flex-direction: column;
 width: 232px;
@@ -20,7 +20,7 @@ export const ContactFild = styled.input`
 export const ContactLabel = styled.label`
 font-weight: 500;
 margin-right: 5px;
-margin-buttom: 5px;
+margin-bottom: 5px;
 `;
 
 export const ButtonSub = styled.button`
