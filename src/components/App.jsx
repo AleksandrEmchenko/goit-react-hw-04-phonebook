@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ContactForm from "./ContactForm";
 import ContactsList from "./Contacts";
 import Filter from "./Filter";
